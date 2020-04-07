@@ -5,6 +5,8 @@ class Team extends Model {
     super.init(
       {
         name: Sequelize.STRING,
+        image: Sequelize.STRING,
+        code: Sequelize.STRING,
       },
       {
         sequelize,
