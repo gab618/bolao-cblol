@@ -26,4 +26,5 @@ routes.post('/team', TeamController.store);
 routes.put('/team/:id', TeamController.update);
 
 routes.post('/match', MatchController.store);
+routes.put('/match/:id', MatchController.update);
 export default routes;

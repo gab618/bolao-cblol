@@ -4,7 +4,8 @@ class Match extends Model {
   static init(sequelize) {
     super.init(
       {
-        start_time: Sequelize.STRING,
+        start_time: Sequelize.DATE,
+        winner: Sequelize.NUMBER,
       },
       {
         sequelize,
