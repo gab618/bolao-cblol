@@ -8,6 +8,7 @@ import FileController from './app/controllers/FileController';
 import TeamController from './app/controllers/TeamController';
 import MatchController from './app/controllers/MatchController';
 import BetController from './app/controllers/BetController';
+import RoundController from './app/controllers/RoundController';
 
 import authMiddleware from './app/middlewares/auth';
 import adminMiddleware from './app/middlewares/admin';
@@ -29,6 +30,9 @@ routes.post('/bet/:match_id', BetController.store);
 routes.use(adminMiddleware);
 routes.post('/team', TeamController.store);
 routes.put('/team/:id', TeamController.update);
+
+routes.post('/round', RoundController.store);
+routes.put('/round/:id', RoundController.update);
 
 routes.post('/match', MatchController.store);
 routes.put('/match/:id', MatchController.update);
