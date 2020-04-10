@@ -1,12 +1,40 @@
 import * as Yup from 'yup';
 import Match from '../models/Match';
+import Team from '../models/Team';
+import Round from '../models/Round';
 
 class MatchController {
+  async index(req, res) {
+    const matches = await Match.findAll({
+      attributes: ['id', 'start_time', 'winner'],
+      include: [
+        {
+          model: Team,
+          as: 'blue',
+          attributes: ['id', 'code', 'name'],
+        },
+        {
+          model: Team,
+          as: 'red',
+          attributes: ['id', 'code', 'name'],
+        },
+        {
+          model: Round,
+          as: 'round',
+          attributes: ['name', 'strategy'],
+        },
+      ],
+    });
+
+    return res.json(matches);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       start_time: Yup.date().required(),
       blue_team: Yup.number().required(),
       red_team: Yup.number().required(),
+      round_id: Yup.number(),
     });
 
     if (!(await schema.isValid(req.body))) {
