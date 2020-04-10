@@ -18,11 +18,9 @@ module.exports = {
       completed: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
-        allowNull: false,
       },
       strategy: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,
