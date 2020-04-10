@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import Match from '../models/Match';
 import Team from '../models/Team';
+import Round from '../models/Round';
 
 class MatchController {
   async index(req, res) {
@@ -17,6 +18,11 @@ class MatchController {
           as: 'red',
           attributes: ['id', 'code', 'name'],
         },
+        {
+          model: Round,
+          as: 'round',
+          attributes: ['name', 'strategy'],
+        },
       ],
     });
 
@@ -28,6 +34,7 @@ class MatchController {
       start_time: Yup.date().required(),
       blue_team: Yup.number().required(),
       red_team: Yup.number().required(),
+      round_id: Yup.number(),
     });
 
     if (!(await schema.isValid(req.body))) {
