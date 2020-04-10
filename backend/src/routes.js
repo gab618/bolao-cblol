@@ -20,6 +20,8 @@ routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
 routes.get('/matches', MatchController.index);
+routes.get('/round/:id', RoundController.show);
+routes.get('/rounds', RoundController.index);
 
 routes.use(authMiddleware);
 routes.put('/users', UserController.update);

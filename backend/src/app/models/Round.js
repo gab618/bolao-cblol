@@ -17,7 +17,7 @@ class Round extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.Match, { foreignKey: 'round_id', as: 'round' });
+    this.hasMany(models.Match, { foreignKey: 'round_id' });
   }
 }
 
