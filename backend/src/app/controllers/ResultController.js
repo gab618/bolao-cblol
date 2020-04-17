@@ -1,3 +1,4 @@
+import Sequelize from 'sequelize';
 import Round from '../models/Round';
 import Match from '../models/Match';
 import Bet from '../models/Bet';
@@ -27,17 +28,28 @@ class MatchController {
       );
     });
 
-    const users = await User.findAll({ attributes: ['id'] });
+    const users = await User.findAll({
+      attributes: {
+        include: [
+          [
+            Sequelize.literal(`(
+          SELECT COUNT(*)
+          FROM "bets" AS "Bet"
+          WHERE
+              "Bet"."user_id" = "User"."id"
+              AND
+              "Bet"."win" = true
+      )`),
+            'points',
+          ],
+        ],
+      },
+    });
+
     users.forEach(async (user) => {
-      const points = await Bet.count({
-        where: {
-          user_id: user.dataValues.id,
-          win: true,
-        },
-      });
       await User.update(
         {
-          points,
+          points: user.dataValues.points,
         },
         { where: { id: user.dataValues.id } }
       );

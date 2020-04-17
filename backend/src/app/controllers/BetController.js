@@ -33,7 +33,7 @@ class BetController {
       return res.status(400).json({ error: 'Invalid team' });
     }
 
-    const date = new Date(2020, 3, 9);
+    const date = new Date();
     if (isAfter(date, match.start_time)) {
       return res.status(400).json({ error: 'The match has already started' });
     }
