@@ -13,6 +13,7 @@ import ResultController from './app/controllers/ResultController';
 
 import authMiddleware from './app/middlewares/auth';
 import adminMiddleware from './app/middlewares/admin';
+import ScheduleController from './app/controllers/ScheduleController';
 
 const routes = new Router();
 const upload = multer(multerConfig);
@@ -23,6 +24,7 @@ routes.post('/sessions', SessionController.store);
 routes.get('/matches', MatchController.index);
 routes.get('/round/:id', RoundController.show);
 routes.get('/rounds', RoundController.index);
+routes.get('/schedule', ScheduleController.index);
 
 routes.use(authMiddleware);
 routes.put('/users', UserController.update);
