@@ -4,6 +4,14 @@ import Bet from '../models/Bet';
 import Match from '../models/Match';
 
 class BetController {
+  async index(req, res) {
+    const bets = await Bet.findAll({
+      where: { user_id: req.userId },
+    });
+
+    return res.json(bets);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       choice: Yup.number().required(),
@@ -21,14 +29,6 @@ class BetController {
       return res.status(400).json({ error: 'Match does not exist' });
     }
 
-    const betExists = await Bet.findOne({
-      where: { user_id: req.userId, match_id: req.params.match_id },
-    });
-
-    if (betExists) {
-      return res.status(400).json({ error: 'Bet already done, please update' });
-    }
-
     if (!(choice === match.blue_team || choice === match.red_team)) {
       return res.status(400).json({ error: 'Invalid team' });
     }
@@ -36,6 +36,15 @@ class BetController {
     const date = new Date();
     if (isAfter(date, match.start_time)) {
       return res.status(400).json({ error: 'The match has already started' });
+    }
+
+    const betExists = await Bet.findOne({
+      where: { user_id: req.userId, match_id: req.params.match_id },
+    });
+
+    if (betExists) {
+      betExists.update({ choice });
+      return res.json(betExists);
     }
 
     const bet = await Bet.create({
