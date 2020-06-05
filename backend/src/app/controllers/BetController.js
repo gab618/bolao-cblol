@@ -4,6 +4,14 @@ import Bet from '../models/Bet';
 import Match from '../models/Match';
 
 class BetController {
+  async index(req, res) {
+    const bets = await Bet.findAll({
+      where: { user_id: req.userId },
+    });
+
+    return res.json(bets);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       choice: Yup.number().required(),

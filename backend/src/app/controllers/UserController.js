@@ -3,6 +3,14 @@ import User from '../models/User';
 import File from '../models/File';
 
 class UserController {
+  async index(req, res) {
+    const leaderboard = await User.findAll({
+      order: [['points', 'DESC']],
+    });
+
+    return res.json(leaderboard);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),

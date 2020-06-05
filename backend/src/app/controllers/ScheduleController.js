@@ -25,12 +25,12 @@ class MatchController {
             {
               model: Team,
               as: 'blue',
-              attributes: ['id', 'code', 'image'],
+              attributes: ['id', 'name', 'code', 'image'],
             },
             {
               model: Team,
               as: 'red',
-              attributes: ['id', 'code', 'image'],
+              attributes: ['id', 'name', 'code', 'image'],
             },
           ],
         },
