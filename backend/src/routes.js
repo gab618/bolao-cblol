@@ -19,6 +19,7 @@ const routes = new Router();
 const upload = multer(multerConfig);
 
 routes.get('/users', UserController.index);
+routes.get('/users/:id', UserController.show);
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
@@ -33,6 +34,7 @@ routes.post('/files', upload.single('file'), FileController.store);
 
 routes.get('/bets', BetController.index);
 routes.post('/bet/:match_id', BetController.store);
+routes.get('/team', TeamController.index);
 
 routes.use(adminMiddleware);
 routes.post('/team', TeamController.store);

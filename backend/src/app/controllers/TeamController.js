@@ -2,6 +2,11 @@ import * as Yup from 'yup';
 import Team from '../models/Team';
 
 class TeamController {
+  async index(req, res) {
+    const teams = await Team.findAll();
+    return res.json(teams);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),

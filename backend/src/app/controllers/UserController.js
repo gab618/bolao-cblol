@@ -6,9 +6,21 @@ class UserController {
   async index(req, res) {
     const leaderboard = await User.findAll({
       order: [['points', 'DESC']],
+      include: [
+        {
+          model: File,
+          as: 'avatar',
+          attributes: ['id', 'path', 'url'],
+        },
+      ],
     });
 
     return res.json(leaderboard);
+  }
+
+  async show(req, res) {
+    const user = await User.findByPk(req.params.id);
+    return res.json(user);
   }
 
   async store(req, res) {
