@@ -10,7 +10,7 @@ class MatchController {
     const { date } = req.query;
     const parsedDate = parseISO(date);
 
-    const round = await Round.findAll({
+    const round = await Round.findOne({
       attributes: ['id', 'name', 'start_time', 'strategy', 'completed'],
       where: {
         start_time: {
