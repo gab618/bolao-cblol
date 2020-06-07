@@ -18,6 +18,7 @@ import ScheduleController from './app/controllers/ScheduleController';
 const routes = new Router();
 const upload = multer(multerConfig);
 
+routes.get('/', (req, res) => res.send('ok'));
 routes.get('/users', UserController.index);
 routes.get('/users/:id', UserController.show);
 routes.post('/users', UserController.store);
