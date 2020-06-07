@@ -42,6 +42,11 @@ class UserController {
         .status(400)
         .json({ error: 'That email address is already in use' });
     }
+
+    if (req.body.is_admin) {
+      return res.status(401).json({ error: 'You can not be an admin >:)' });
+    }
+
     const { id, name, email } = await User.create(req.body);
     return res.json({
       id,
@@ -84,6 +89,10 @@ class UserController {
 
     if (oldPassword && !(await user.checkPassword(oldPassword))) {
       return res.status(401).json({ error: 'Password does not match' });
+    }
+
+    if (req.body.is_admin) {
+      return res.status(401).json({ error: 'You can not become admin >:)' });
     }
 
     await user.update(req.body);
