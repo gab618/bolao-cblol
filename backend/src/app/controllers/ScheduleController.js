@@ -5,7 +5,7 @@ import Round from '../models/Round';
 import Match from '../models/Match';
 import Team from '../models/Team';
 
-class MatchController {
+class ScheduleController {
   async index(req, res) {
     const { date } = req.query;
     const parsedDate = parseISO(date);
@@ -41,4 +41,4 @@ class MatchController {
   }
 }
 
-export default new MatchController();
+export default new ScheduleController();
