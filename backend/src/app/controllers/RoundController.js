@@ -7,7 +7,7 @@ class MatchController {
   async index(req, res) {
     const rounds = await Round.findAll({
       attributes: ['id', 'name', 'start_time', 'strategy', 'completed'],
-      order: [['start_time', 'ASC']],
+      order: [['id', 'ASC']],
       include: [
         {
           model: Match,
