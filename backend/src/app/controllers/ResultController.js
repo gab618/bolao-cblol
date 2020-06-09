@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import Round from '../models/Round';
 import Match from '../models/Match';
 import Bet from '../models/Bet';
@@ -23,6 +24,15 @@ class ResultController {
             where: {
               match_id: match.id,
               choice: match.winner,
+            },
+          }
+        );
+        await Bet.update(
+          { win: false },
+          {
+            where: {
+              match_id: match.id,
+              choice: { [Op.not]: match.winner },
             },
           }
         );
