@@ -5,7 +5,9 @@ import Bet from '../models/Bet';
 import User from '../models/User';
 
 class MatchController {
+  // update points by round
   async update(req, res) {
+    // get round
     const round = await Round.findByPk(req.params.id, {
       attributes: [],
       include: [
@@ -16,17 +18,19 @@ class MatchController {
       ],
     });
 
-    round.Matches.forEach(async (match) => {
-      await Bet.update(
-        { win: true },
-        {
-          where: {
-            match_id: match.id,
-            choice: match.winner,
-          },
-        }
-      );
-    });
+    await Promise.all(
+      round.Matches.map(async (match) => {
+        await Bet.update(
+          { win: true },
+          {
+            where: {
+              match_id: match.id,
+              choice: match.winner,
+            },
+          }
+        );
+      })
+    );
 
     const users = await User.findAll({
       attributes: {
@@ -46,14 +50,14 @@ class MatchController {
       },
     });
 
-    users.forEach(async (user) => {
-      await User.update(
-        {
-          points: user.dataValues.points,
-        },
-        { where: { id: user.dataValues.id } }
-      );
-    });
+    await Promise.all(
+      users.map(async (user) => {
+        await User.update(
+          { points: user.dataValues.points },
+          { where: { id: user.dataValues.id } }
+        );
+      })
+    );
 
     return res.json(round.Matches);
   }
