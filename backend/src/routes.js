@@ -14,6 +14,7 @@ import ResultController from './app/controllers/ResultController';
 import authMiddleware from './app/middlewares/auth';
 import adminMiddleware from './app/middlewares/admin';
 import ScheduleController from './app/controllers/ScheduleController';
+import PointsController from './app/controllers/PointsController';
 
 const routes = new Router();
 const upload = multer(multerConfig);
@@ -48,4 +49,5 @@ routes.post('/match', MatchController.store);
 routes.put('/match/:id', MatchController.update);
 
 routes.put('/result/:id', ResultController.update);
+routes.put('/points', PointsController.update);
 export default routes;
