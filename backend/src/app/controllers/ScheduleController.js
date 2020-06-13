@@ -21,6 +21,7 @@ class ScheduleController {
         {
           model: Match,
           attributes: ['id', 'start_time', 'winner'],
+          order: [['created_at', 'ASC']],
           include: [
             {
               model: Team,
