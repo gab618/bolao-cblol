@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 import { isAfter } from 'date-fns';
 import Bet from '../models/Bet';
 import Match from '../models/Match';
+import User from '../models/User';
 
 class BetController {
   async index(req, res) {
@@ -33,8 +34,11 @@ class BetController {
       return res.status(400).json({ error: 'Invalid team' });
     }
 
+    const user = await User.findByPk(req.userId);
+    const isCaster = user.dataValues.is_caster;
+
     const date = new Date();
-    if (isAfter(date, match.start_time)) {
+    if (!isCaster && isAfter(date, match.start_time)) {
       return res.status(400).json({ error: 'The match has already started' });
     }
 
