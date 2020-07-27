@@ -15,6 +15,7 @@ import authMiddleware from './app/middlewares/auth';
 import adminMiddleware from './app/middlewares/admin';
 import ScheduleController from './app/controllers/ScheduleController';
 import PointsController from './app/controllers/PointsController';
+import PasswordController from './app/controllers/PasswordController';
 
 const routes = new Router();
 const upload = multer(multerConfig);
@@ -24,6 +25,8 @@ routes.get('/users', UserController.index);
 routes.get('/users/:id', UserController.show);
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
+
+routes.post('/password', PasswordController.store);
 
 routes.get('/matches', MatchController.index);
 routes.get('/round/:id', RoundController.show);
