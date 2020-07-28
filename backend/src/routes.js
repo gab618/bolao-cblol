@@ -27,6 +27,7 @@ routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
 routes.post('/password', PasswordController.store);
+routes.put('/password', PasswordController.update);
 
 routes.get('/matches', MatchController.index);
 routes.get('/round/:id', RoundController.show);
