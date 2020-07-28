@@ -27,7 +27,7 @@ class PasswordController {
         await Mail.sendMail({
           to: `${user.name} <${user.email}>`,
           subject: 'Alterar Senha',
-          text: `${process.env.FRONTEND_URL}/reset_password?token=${resetToken}`,
+          text: `${process.env.FRONTEND_URL}reset_password?token=${resetToken}`,
         });
 
         return res
