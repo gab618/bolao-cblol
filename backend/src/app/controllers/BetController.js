@@ -13,6 +13,14 @@ class BetController {
     return res.json(bets);
   }
 
+  async show(req, res) {
+    const bets = await Bet.findAll({
+      where: { user_id: req.params.id, completed: true },
+    });
+
+    return res.json(bets);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       choice: Yup.number().required(),
