@@ -16,10 +16,17 @@ class ResultController {
       ],
     });
 
+    await Round.update(
+      { completed: true },
+      {
+        where: { id: req.params.id },
+      }
+    );
+
     await Promise.all(
       round.Matches.map(async (match) => {
         await Bet.update(
-          { win: true },
+          { win: true, completed: true },
           {
             where: {
               match_id: match.id,
@@ -28,7 +35,7 @@ class ResultController {
           }
         );
         await Bet.update(
-          { win: false },
+          { win: false, completed: true },
           {
             where: {
               match_id: match.id,

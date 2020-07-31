@@ -32,6 +32,7 @@ routes.put('/password', PasswordController.update);
 routes.get('/matches', MatchController.index);
 routes.get('/round/:id', RoundController.show);
 routes.get('/rounds', RoundController.index);
+routes.get('/bets/:id', BetController.show);
 routes.get('/schedule', ScheduleController.index);
 
 routes.use(authMiddleware);
