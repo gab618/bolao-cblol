@@ -7,6 +7,7 @@ class Bet extends Model {
         date: Sequelize.DATE,
         choice: Sequelize.INTEGER,
         win: Sequelize.BOOLEAN,
+        completed: Sequelize.BOOLEAN,
       },
       {
         sequelize,
