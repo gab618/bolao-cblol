@@ -19,7 +19,16 @@ class UserController {
   }
 
   async show(req, res) {
-    const user = await User.findByPk(req.params.id);
+    const user = await User.findByPk(req.params.id, {
+      attributes: ['id', 'name', 'points', 'is_caster', 'is_admin'],
+      include: [
+        {
+          model: File,
+          as: 'avatar',
+          attributes: ['id', 'path', 'url'],
+        },
+      ],
+    });
     return res.json(user);
   }
 
