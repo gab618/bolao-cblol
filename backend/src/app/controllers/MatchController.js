@@ -6,7 +6,14 @@ import Round from '../models/Round';
 class MatchController {
   async index(req, res) {
     const matches = await Match.findAll({
-      attributes: ['id', 'start_time', 'winner'],
+      attributes: [
+        'id',
+        'start_time',
+        'winner',
+        'is_bo5',
+        'red_team_wins',
+        'blue_team_wins',
+      ],
       include: [
         {
           model: Team,
@@ -35,6 +42,7 @@ class MatchController {
       blue_team: Yup.number().required(),
       red_team: Yup.number().required(),
       round_id: Yup.number(),
+      is_bo5: Yup.boolean(),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -51,6 +59,9 @@ class MatchController {
       blue_team: Yup.number(),
       red_team: Yup.number(),
       winner: Yup.number(),
+      is_bo5: Yup.boolean(),
+      blue_team_wins: Yup.number(),
+      red_team_wins: Yup.number(),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -64,9 +75,14 @@ class MatchController {
       return res.status(400).json({ error: 'Match not found' });
     }
 
-    const { blue_team, red_team, start_time, winner } = await match.update(
-      req.body
-    );
+    const {
+      blue_team,
+      red_team,
+      start_time,
+      winner,
+      blue_team_wins,
+      red_team_wins,
+    } = await match.update(req.body);
 
     return res.json({
       id,
@@ -74,6 +90,8 @@ class MatchController {
       red_team,
       start_time,
       winner,
+      blue_team_wins,
+      red_team_wins,
     });
   }
 }

@@ -6,6 +6,9 @@ class Match extends Model {
       {
         start_time: Sequelize.DATE,
         winner: Sequelize.INTEGER,
+        is_bo5: Sequelize.BOOLEAN,
+        blue_team_wins: Sequelize.INTEGER,
+        red_team_wins: Sequelize.INTEGER,
       },
       {
         sequelize,

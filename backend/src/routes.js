@@ -16,6 +16,7 @@ import adminMiddleware from './app/middlewares/admin';
 import ScheduleController from './app/controllers/ScheduleController';
 import PointsController from './app/controllers/PointsController';
 import PasswordController from './app/controllers/PasswordController';
+import Bo5BetController from './app/controllers/Bo5BetController';
 
 const routes = new Router();
 const upload = multer(multerConfig);
@@ -33,6 +34,7 @@ routes.get('/matches', MatchController.index);
 routes.get('/round/:id', RoundController.show);
 routes.get('/rounds', RoundController.index);
 routes.get('/bets/:id', BetController.show);
+routes.get('/bo5/:id', Bo5BetController.show);
 routes.get('/schedule', ScheduleController.index);
 
 routes.use(authMiddleware);
@@ -41,6 +43,8 @@ routes.post('/files', upload.single('file'), FileController.store);
 
 routes.get('/bets', BetController.index);
 routes.post('/bet/:match_id', BetController.store);
+routes.get('/bo5', Bo5BetController.index);
+routes.post('/bo5/:match_id', Bo5BetController.store);
 routes.get('/team', TeamController.index);
 
 routes.use(adminMiddleware);

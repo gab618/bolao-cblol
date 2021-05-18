@@ -7,8 +7,9 @@ import Team from '../app/models/Team';
 import Match from '../app/models/Match';
 import Bet from '../app/models/Bet';
 import Round from '../app/models/Round';
+import Bo5Bet from '../app/models/Bo5Bet';
 
-const models = [User, File, Team, Match, Bet, Round];
+const models = [User, File, Team, Match, Bet, Round, Bo5Bet];
 
 class Database {
   constructor() {
