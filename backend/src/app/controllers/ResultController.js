@@ -12,7 +12,7 @@ class ResultController {
       include: [
         {
           model: Match,
-          attributes: ['id', 'winner'],
+          attributes: ['id', 'winner', 'blue_team_wins', 'red_team_wins'],
         },
       ],
     });

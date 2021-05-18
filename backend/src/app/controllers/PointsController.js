@@ -17,16 +17,27 @@ class PointsController {
       )`),
             'points',
           ],
+          [
+            Sequelize.literal(`(
+          SELECT COUNT(*)
+          FROM "bo5_bets" AS "Bo5Bet"
+          WHERE
+              "Bo5Bet"."user_id" = "User"."id"
+              AND
+              "Bo5Bet"."win" = true
+      ) * 2`),
+            'bo5_points',
+          ],
         ],
       },
     });
 
     await Promise.all(
       users.map(async (user) => {
-        await User.update(
-          { points: user.dataValues.points },
-          { where: { id: user.dataValues.id } }
-        );
+        const points =
+          Number(user.dataValues.points) + Number(user.dataValues.bo5_points);
+
+        await User.update({ points }, { where: { id: user.dataValues.id } });
       })
     );
 
