@@ -2,6 +2,7 @@ import { Op } from 'sequelize';
 import Round from '../models/Round';
 import Match from '../models/Match';
 import Bet from '../models/Bet';
+import Bo5Bet from '../models/Bo5Bet';
 
 class ResultController {
   // update points by round
@@ -40,6 +41,24 @@ class ResultController {
             where: {
               match_id: match.id,
               choice: { [Op.not]: match.winner },
+            },
+          }
+        );
+        await Bo5Bet.update(
+          { win: true, completed: true },
+          {
+            where: {
+              blue_team_wins: match.blue_team_wins,
+              red_team_wins: match.red_team_wins,
+            },
+          }
+        );
+        await Bo5Bet.update(
+          { win: false, completed: true },
+          {
+            where: {
+              blue_team_wins: { [Op.not]: match.blue_team_wins },
+              red_team_wins: { [Op.not]: match.red_team_wins },
             },
           }
         );
