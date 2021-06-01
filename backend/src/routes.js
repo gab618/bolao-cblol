@@ -17,6 +17,7 @@ import ScheduleController from './app/controllers/ScheduleController';
 import PointsController from './app/controllers/PointsController';
 import PasswordController from './app/controllers/PasswordController';
 import Bo5BetController from './app/controllers/Bo5BetController';
+import CasterController from './app/controllers/CasterController';
 
 const routes = new Router();
 const upload = multer(multerConfig);
@@ -24,6 +25,7 @@ const upload = multer(multerConfig);
 routes.get('/', (req, res) => res.send('ok'));
 routes.get('/users', UserController.index);
 routes.get('/users/:id', UserController.show);
+routes.get('/casters', CasterController.index);
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
@@ -57,6 +59,9 @@ routes.put('/round/:id', RoundController.update);
 routes.post('/match', MatchController.store);
 routes.put('/match/:id', MatchController.update);
 
+routes.post('/casters/bet/:match_id', CasterController.store);
+
 routes.put('/result/:id', ResultController.update);
 routes.put('/points', PointsController.update);
+
 export default routes;
