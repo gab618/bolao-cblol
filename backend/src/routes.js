@@ -59,6 +59,9 @@ routes.put('/round/:id', RoundController.update);
 routes.post('/match', MatchController.store);
 routes.put('/match/:id', MatchController.update);
 
+routes.post('/casters/bet/:match_id', CasterController.store);
+
 routes.put('/result/:id', ResultController.update);
 routes.put('/points', PointsController.update);
+
 export default routes;
