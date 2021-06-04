@@ -57,13 +57,9 @@ O projeto nasceu para solucionar o problema que eu tinha em fazer um bolão do C
 
 
 <!-- USAGE EXAMPLES -->
-<!-- ## Usage
+## Gmail config
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_ -->
-
-
+Particularly 2 issues: or you don't have enabled Less Secure Apps https://myaccount.google.com/lesssecureapps or you don't have enabled Display Unlock Captcha https://accounts.google.com/DisplayUnlockCaptcha, you need to turn on both of them.
 
 <!-- CONTRIBUTING -->
 <!-- ## Contributing
