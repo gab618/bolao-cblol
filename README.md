@@ -13,7 +13,7 @@
     <a href="https://github.com/gab618/bolao-cblol-frontend"><strong>Frontend do projeto»</strong></a>
     <br />
     <br />
-    <a href="https://bolaocblol.netlify.app/">Acessar</a>
+    <a href="http://www.bolaocblol.com.br/">Acessar</a>
     ·
     <a href="https://github.com/gab618/bolao-cblol">Report Bug</a>
     ·
@@ -25,7 +25,7 @@
 <!-- ABOUT THE PROJECT -->
 ## Sobre o projeto
 
-[![BolaoCBLOL preview][product-gif]](https://bolaocblol.netlify.app/)
+[![BolaoCBLOL preview][product-gif]](http://www.bolaocblol.com.br/)
 
 O projeto nasceu para solucionar o problema que eu tinha em fazer um bolão do CBLOL com os amigos de forma organizada. Na plataforma, é possível criar uma conta e fazer os palpites com facilidade. A contagem dos pontos e feita pelo sistema, enquanto o registro das partidas é feito pelo administrador. O administrador tem uma página própria para criar os jogos e atualizar os resultados na rota /admin.
 
